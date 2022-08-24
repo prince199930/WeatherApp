@@ -12,9 +12,9 @@ const HomePage = ({ navigation }) => {
   }
   const fetchCities = async (text: string) => {
     setCity(text)
-    await fetch(`https://restcountries.com/v3.1/name/${text}`).then((item) => item.json()).then((citydata) => setCities(citydata.slice(0, 9)))
+    await fetch(`https://restcountries.com/v3.1/name/${text}`).then((item) => item.json()).then((citydata) => setCities(citydata.slice(0, 8)))
   }
-  const listClick = async (cityname:string) => {
+  const listClick = async (cityname: string) => {
     setCity(cityname)
     navigation.navigate("WeatherDetail", { city: cityname })
   }
@@ -32,11 +32,10 @@ const HomePage = ({ navigation }) => {
             <View style={{ marginTop: 20 }}>
               <SearchBar
                 value={city}
-                onChangeText={(text:string) => fetchCities(text)}
+                onChangeText={(text: string) => fetchCities(text)}
               />
               <Button
                 disabled={city.length > 0 ? false : true}
-                icon="content-save"
                 mode="contained"
                 theme={{ colors: { primary: "#00aaff" } }}
                 style={{ margin: 20, width: 120, justifyContent: "center", marginLeft: 130, borderRadius: 8 }}
@@ -46,7 +45,7 @@ const HomePage = ({ navigation }) => {
               </Button>
 
               {Object.values(cities).map((item, i) =>
-                <Card onPress={() => listClick(item.capital)} key={i} style={{
+                <Card key={i} style={{
                   justifyContent: "center", backgroundColor: 'white', elevation: 20,
                   shadowColor: '#52006A', marginLeft: 90, width: 200, height: 100, marginBottom: 20, padding: 25, borderRadius: 8
                 }}>
@@ -60,6 +59,11 @@ const HomePage = ({ navigation }) => {
                     <Text style={{ fontWeight: 'bold', color: 'black', }}>Flag</Text>
                     <Image style={{ width: 30, height: 30, marginLeft: 10 }} source={{ uri: item.flags.png }} />
                   </View>
+                  <Button mode="contained"
+                    theme={{ colors: { primary: "#00aaff" } }}
+                    style={{ width: 160, borderRadius: 8, marginTop: 10 }}
+                    onPress={() => listClick(item.capital)}
+                  >GET CAPITAL</Button>
                 </Card>)}
             </View>
           </View>
