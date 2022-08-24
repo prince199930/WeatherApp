@@ -1,9 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomePage from './src/Screens/HomePage';
+
 import WeatherDetail from './src/Screens/WeatherDetail';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { View } from 'react-native';
+import HomePage from './src/Screens/HomePage';
 const color = {
   white: '#FFFFFF',
   gray: '#7C7C7C',
@@ -35,8 +37,6 @@ const App = () => {
         <Tab.Screen name="Search" component={HomePage} />
       </Tab.Navigator>
     </NavigationContainer>
-
-
 
   );
 };

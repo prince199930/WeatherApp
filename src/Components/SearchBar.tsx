@@ -6,19 +6,23 @@ const SearchBar = ({ value, onChangeText }) => {
     black: '#000000',
   }
   return (
-    <View >
+    <View style={{ display: "flex", justifyContent: "center", marginLeft: 80 }}>
       <TextInput
         value={value}
-        placeholder="Search Here"
+        placeholder="Enter Country Name"
         placeholderTextColor={color.black}
         style={{
+          marginLeft: 10,
+          textAlign: 'center',
           margin: 15,
           height: 40,
-          borderColor: '#7a42f4',
-          borderWidth: 1
+          width: 230,
+          fontSize: 15,
+          borderColor: '#ccc',
+          borderWidth: 1,
+          borderRadius: 8
         }}
         onChangeText={onChangeText}
-
       />
 
     </View>
