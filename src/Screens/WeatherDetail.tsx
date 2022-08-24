@@ -7,7 +7,7 @@ const WeatherDetail = (props) => {
     weather_icons: "loading!!",
     wind_speed: "loading!!",
     precip: "loading!!",
-  })
+  }) 
 
   const getWeatherData = async () => {
     let MyCity
@@ -28,9 +28,6 @@ const WeatherDetail = (props) => {
   if (props.route.params !== "Delhi") {
     getWeatherData()
   }
-
-
-
 
   useEffect(() => {
     getWeatherData()

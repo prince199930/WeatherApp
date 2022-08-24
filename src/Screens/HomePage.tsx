@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ImageBackground } from 'react-native';
 import { Button, Card } from 'react-native-paper';
-
 import { RootObject } from '../Assets/Types/HomePageType';
 import SearchBar from '../Components/SearchBar';
 
@@ -9,18 +8,15 @@ const HomePage = ({ navigation }) => {
   const [city, setCity] = useState<String>("");
   const [cities, setCities] = useState({} as RootObject)
   const btnClick = async () => {
-
     navigation.navigate("WeatherDetail", { city: city })
-    console.log("jkds")
   }
   const fetchCities = async (text: string) => {
     setCity(text)
     await fetch(`https://restcountries.com/v3.1/name/${text}`).then((item) => item.json()).then((citydata) => setCities(citydata.slice(0, 9)))
   }
-  const listClick = async (cityname) => {
+  const listClick = async (cityname:string) => {
     setCity(cityname)
     navigation.navigate("WeatherDetail", { city: cityname })
-    console.log("mbds")
   }
 
 
@@ -36,7 +32,7 @@ const HomePage = ({ navigation }) => {
             <View style={{ marginTop: 20 }}>
               <SearchBar
                 value={city}
-                onChangeText={(text) => fetchCities(text)}
+                onChangeText={(text:string) => fetchCities(text)}
               />
               <Button
                 disabled={city.length > 0 ? false : true}
