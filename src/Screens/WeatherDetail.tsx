@@ -15,7 +15,7 @@ const WeatherDetail = (props) => {
     const { city } = props.route.params
     MyCity = city
 
-    await fetch(`http://api.weatherstack.com/current?access_key=ab6ee37c610f0496c4fd1141bbe31b02&query=Delhi`).then(data => data.json()).then((result) => {
+    await fetch(`http://api.weatherstack.com/current?access_key=ab6ee37c610f0496c4fd1141bbe31b02&query=${MyCity}`).then(data => data.json()).then((result) => {
       setInfo({
         temperature: result.current.temperature,
         weather_icons: result.current.weather_icons,
