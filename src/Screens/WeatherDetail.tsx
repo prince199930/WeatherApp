@@ -20,7 +20,7 @@ const WeatherDetail = (props) => {
   
 
 
-    let respeonse = await fetch(`http://api.weatherstack.com/current?access_key=fde4bc8358f0f29643b56d99cdfe48bf&query=${MyCity}`)
+    let respeonse = await fetch(`http://api.weatherstack.com/current?access_key=719e1e14d5ecbad555d7a6a66c8211ac&query=${MyCity}`)
    
     let data = respeonse.json().then(res => {
       setInfo({
