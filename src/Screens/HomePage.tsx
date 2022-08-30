@@ -4,6 +4,11 @@ import { Button, Card } from 'react-native-paper';
 import { RootObject } from '../Assets/Types/HomePageType';
 import SearchBar from '../Components/SearchBar';
 
+export interface CityType{
+  city:String,
+  setCity:String
+}
+
 const HomePage = ({ navigation }) => {
   const [city, setCity] = useState<String>("");
   const [cities, setCities] = useState({} as RootObject)

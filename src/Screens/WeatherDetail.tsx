@@ -1,5 +1,8 @@
 import { View, Text, Image, ImageBackground } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { useRoute } from '@react-navigation/native'
+import { RouteProp } from '@react-navigation/native';
+import { CityType } from './HomePage';
 
 const WeatherDetail = (props) => {
   const [info, setInfo] = useState({
@@ -7,24 +10,33 @@ const WeatherDetail = (props) => {
     weather_icons: "loading!!",
     wind_speed: "loading!!",
     precip: "loading!!",
-  }) 
+  })
+
 
   const getWeatherData = async () => {
-    let MyCity
+    const route = useRoute<RouteProp<Record<string, CityType>, string>>();
+ 
+    let MyCity = route.params.city
+  
 
-    const { city } = props.route.params
-    MyCity = city
 
-    await fetch(`http://api.weatherstack.com/current?access_key=ab6ee37c610f0496c4fd1141bbe31b02&query=${MyCity}`).then(data => data.json()).then((result) => {
+    let respeonse = await fetch(`http://api.weatherstack.com/current?access_key=fde4bc8358f0f29643b56d99cdfe48bf&query=${MyCity}`)
+   
+    let data = respeonse.json().then(res => {
       setInfo({
-        temperature: result.current.temperature,
-        weather_icons: result.current.weather_icons,
-        wind_speed: result.current.wind_speed,
-        precip: result.current.precip
+        temperature: res.current.temperature, 
+        weather_icons: res.current.weather_icons,
+        wind_speed: res.current.wind_speed,
+        precip: res.current.precip
       })
+    }).catch(err => {
+      alert(err.message)
     })
 
+
+
   }
+
   if (props.route.params !== "Delhi") {
     getWeatherData()
   }
@@ -55,7 +67,7 @@ const WeatherDetail = (props) => {
               <View style={{ flexDirection: "row", paddingLeft: 25, paddingTop: 10, paddingBottom: 10 }}>
                 <Text style={{ fontWeight: 'bold', color: 'black', }}>Weather Icon</Text>
                 <Image style={{ width: 30, height: 30, }}
-                  source={{ uri: info.weather_icons }} />
+                  source={{ uri: `${info.weather_icons} `}} />
               </View>
               <View style={{ flexDirection: "row", paddingLeft: 25, paddingTop: 10, paddingBottom: 10 }}>
                 <Text style={{ fontWeight: 'bold', color: 'black', }}>Wind Speed:</Text>
